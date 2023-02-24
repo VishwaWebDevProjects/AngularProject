@@ -1,0 +1,58 @@
+<button (click)="toggleShow()" class="btn btn-primary glow-on-hover">Add</button>
+
+<form *ngIf="showForm" [formGroup]="form">
+    <fieldset>
+        <legend>Add missing pig</legend>
+        <label>Name: </label>
+        <br>
+        <input name="name" type="text" placeholder="your name" formControlName="name">
+        <br>
+        <br>
+        <label>Phone number: </label>
+        <br>
+        <input name="phone" type="number" placeholder="your phone number" (change)="checkPhone()" formControlName="phone">
+        <br>
+        <br>
+        <label>Pig breed: </label>
+        <br>
+        <input name="pigBreed" type="text" placeholder="enter what kinda bacon" formControlName="pigBreed">
+        <br>
+        <br>
+        <label>Pig ID: </label>
+        <br>
+        <input name="pigID" type="number" placeholder="check butt" formControlName="pigID">
+        <br>
+        <br>
+        <label>Use Existing location?</label>
+        <br>
+        <input type="checkbox" formControlName="existingLocation" (change)="changeLocStatus()">
+        <br>
+        <br>
+        <label>Location name: </label>
+        <br>
+        <input *ngIf="newLocation" name="locName" type="text" placeholder="location name" formControlName="locName">
+        <label *ngIf="newLocation">Location latitude: </label>
+        <input *ngIf="newLocation" name="locLat" type="text" placeholder="location latitude" formControlName="locLat">
+        <label *ngIf="newLocation">Location longitude: </label>
+        <input *ngIf="newLocation" name="locLong" type="text" placeholder="location longitude" formControlName="locLong">
+        <br *ngIf="newLocation">
+
+        <select *ngIf="showExistingLoc" id="selectionID" formControlName="locName" [(ngModel)]="selectedLocation" (change)="changeVal()">
+            <option *ngFor="let location of pigLocs" value="{{location.data.locName}}" [ngValue]="location.data.locName">{{ location.data.locName }}</option>
+        </select>
+        <br>
+        <br>
+
+        <label>Extra notes: </label>
+        <br>
+        <textarea name="extraInfo" placeholder="enter any extra info" formControlName="extraInfo"></textarea>
+        <br>
+
+        <button (click)="resetForm()" class="btn btn-primary glow-on-hover">Cancel</button>
+        <button (click)="onSubmit(form.value)" type="submit" [disabled]="!form.valid || !noErrorsPresent" class="btn btn-primary glow-on-hover">Submit</button>
+    </fieldset>
+</form>
+
+<div style="color:red">
+    <p>{{ErrorMessage}}</p>
+</div>

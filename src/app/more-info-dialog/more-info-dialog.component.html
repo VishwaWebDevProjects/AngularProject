@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>More Info:</h1>
+<div mat-dialog-content>
+  <p>Reported By: {{data.name}}</p>
+  <p>Reporter's Phone Number: {{data.phone}}</p>
+  <p>Pig Breed: {{data.pigBreed}}</p>
+  <p>Pig ID: {{data.pigID}}</p>
+  <p>Pig's Location: {{data.pigLoc}}</p>
+  <p>Pig's Latitude: {{data.locLat}}</p>
+  <p>Pig's Longitude: {{data.locLong}}</p>
+  <p>Reported On: {{data.addedOn | date:'yyyy-MM-dd (hh:mma)'}}</p>
+  <p>Pig's Status: {{data.status}}</p>
+  <p>Extra Information: {{data.extraInfo}}</p>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Done</button>
+</div>

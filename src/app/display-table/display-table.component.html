@@ -1,0 +1,21 @@
+<table class="table table-striped table-bordered table-dark table-hover">
+    <tr class="bg-primary">
+      <th (click)="sortLocation()" class="headerClass crsPtr hvr1">Location {{locationDir}}</th>
+      <th (click)="sortReportedBy()" class="headerClass crsPtr hvr1">Reported By {{reporterDir}}</th>
+      <th (click)="sortTimeReported()" class="headerClass crsPtr hvr1">Time Reported {{timeDir}}</th>
+      <th colspan="4" (click)="sortStatus()" class="headerClass crsPtr hvr1">Status {{statusDir}}</th>   
+    </tr>
+
+    <tr id={{pig.data.locName+pig.data.name+pig.data.addedOn+pig.data.status}} *ngFor= "let pig of pigs">
+      <td>{{pig.data.locName}}</td>
+      <td>{{pig.data.name}}</td>
+      <td>{{pig.data.addedOn | date:'yyyy-MM-dd, hh:mma'}}</td>
+      <td>{{pig.data.status}}</td>
+      <td (click)="promptForPassword(pig.data, 0, $event.target)" class="crsPtr hvrCS">Change Status</td>
+      <td (click)="moreInfo(pig.data)" class="crsPtr hvrMF">More Info ℹ️</td>
+      <td (click)="promptForPassword(pig.data, 1, $event.target)" class="crsPtr hvrDel">Delete ❌</td>
+    </tr>
+</table>
+
+<a href="" (click)="changeTellEmBoiStatus()"><button class="btn btn-primary glow-on-hover">Update</button></a>
+<p>{{TellEmBoi}}</p>
